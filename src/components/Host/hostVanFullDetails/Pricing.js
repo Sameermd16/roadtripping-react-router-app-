@@ -1,7 +1,9 @@
 import React from 'react'
+import { useOutletContext } from "react-router-dom"
 
 export default function Pricing() {
+    const [array, setArray] = useOutletContext()
     return (
-        <h1>this is host/vans/pricing details </h1>
+        <h3 className="host-van-price"> ${array.price} </h3>
     )
 }

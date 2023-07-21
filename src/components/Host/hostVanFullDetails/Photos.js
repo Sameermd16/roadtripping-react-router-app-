@@ -1,18 +1,15 @@
 import React from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useOutletContext } from "react-router-dom"
 
 export default function Photos() {
-    const {params} = useParams()
-    console.log(params)
+    
+    const [array, setArray] = useOutletContext()
 
     React.useEffect(() => {
 
     }, [])
     return (
-        <>
-            <h2>this is host/vans/photos section!</h2>
-            <img />
-        </>
+            <img src={array.imageUrl} className="host-van-detail-image" />
     )
 }
 
