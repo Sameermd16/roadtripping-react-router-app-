@@ -9,17 +9,17 @@ function Header() {
   // }
   return (
     <header>
-      <Link to="/" className="site-logo">
+      <Link to="." className="site-logo">
         #VanlLife
       </Link>
       <nav>
-        <NavLink to="/host"
+        <NavLink to="host"
           className={({isActive}) => isActive ? "active-link" : null}
         >Host</NavLink>
-        <NavLink to="/about"
+        <NavLink to="about"
           className={({isActive}) => isActive ? "active-link" : null}
         >About</NavLink>
-        <NavLink to="/vans"
+        <NavLink to="vans"
           className={({isActive}) => isActive ? "active-link" : null}
         >Vans</NavLink>
       </nav>

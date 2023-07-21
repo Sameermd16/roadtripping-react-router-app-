@@ -13,16 +13,16 @@ function HostLayout() {
                 <NavLink 
                     end
                     style={({isActive}) => isActive ? activeStyles : null}
-                to="/host">Dashboard</NavLink>
+                to=".">Dashboard</NavLink>
                 <NavLink 
                     style={({isActive}) => isActive ? activeStyles : null}
-                to="/host/income">Income</NavLink>
+                to="income">Income</NavLink>
                 <NavLink 
                     style={({isActive}) => isActive ? activeStyles : null}
-                to="/host/vans">Vans</NavLink>
+                to="vans">Vans</NavLink>
                 <NavLink 
                     style={({isActive}) => isActive ? activeStyles : null}
-                to="/host/reviews">Reviews</NavLink>
+                to="reviews">Reviews</NavLink>
             </nav>
             <Outlet />
         </>

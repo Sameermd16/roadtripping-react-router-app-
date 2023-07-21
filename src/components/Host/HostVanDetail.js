@@ -1,5 +1,5 @@
 import React from "react"
-import { useParams } from "react-router-dom"
+import { useParams, NavLink, Outlet } from "react-router-dom"
 
 export default function HostVanDetail() {
     const params = useParams()
@@ -12,11 +12,51 @@ export default function HostVanDetail() {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            setArray(data)
+            console.log(data.vans)
+            setArray(data.vans)
         })
-    }, [params.id])
+    }, [])
+
+    console.log(array)
+
+    if(!array) {
+        return <h1>Loading...</h1>
+    }
+
+    const activeStyles = {
+        fontWeight: "bold",
+        textDecoration: "underline",
+        color: "#161616"
+    }
 
     return (
-        <h1>this is nested single van detail</h1>
+        <section>
+            <NavLink to=".." relative="path"  className="back-button">
+                &larr;<span>Back to all vans</span>
+            </NavLink>
+            <div className="host-van-detail-layout-container">
+                <div className="host-van-detail">
+                    <img src={`${array.imageUrl}`} />
+                    <div className="host-van-detail-info-text">
+                        <i className={`van-type van-type-${array.type}`}>{array.type}</i>
+                        <h3>{array.name}</h3>
+                        <h4>${array.price}/day</h4>
+                    </div>
+                </div>
+                <div className="host-nav">
+                    <NavLink to="."
+                        style={({isActive}) => isActive ? activeStyles : null}
+                        end
+                    >Details</NavLink>
+                    <NavLink to="pricing"
+                        style={({isActive}) => isActive ? activeStyles : null}
+                    >Pricing</NavLink>
+                    <NavLink to="photos"
+                        style={({isActive}) => isActive ? activeStyles : null}
+                    >Photos</NavLink>
+                </div>
+                <Outlet />
+            </div>
+        </section>
     )
 }
