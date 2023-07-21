@@ -1,9 +1,12 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, NavLink, useLocation } from 'react-router-dom'
 
 function VanDetail() {
     const params = useParams()
     console.log(params)
+
+    const location = useLocation()
+    console.log(location)
 
     const [van, setVan] = React.useState(null)
 
@@ -16,9 +19,14 @@ function VanDetail() {
         })
     }, [params.id])
 
+    //optional chaining 
+    // const search = location.state?.search || ""
+    //const type = location.state?.typeFilter || "all"
+
     return (
         // <h1>van detail page here</h1>
         <div className='van-detail-container'>
+            <NavLink to={`..${location.state.search}`} relative="path" className="back-button">&larr;<span>Back to {location.state.typeFilter}</span></NavLink>
             {van ? (
                 <div className='van-detail'>
                     <img src={van.imageUrl} />

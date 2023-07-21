@@ -10,7 +10,7 @@ function Header() {
   return (
     <header>
       <Link to="." className="site-logo">
-        #VanlLife
+        #VanLife
       </Link>
       <nav>
         <NavLink to="host"

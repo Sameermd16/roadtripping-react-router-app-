@@ -2,7 +2,7 @@ import React from "react"
 
 function Footer() {
     return (
-        <footer>&#169; 2022 #VANLIFE</footer>
+        <footer className="footer">&#169; 2022 #VANLIFE</footer>
     )
 }
 

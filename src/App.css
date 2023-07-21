@@ -149,6 +149,16 @@ header a:hover {
   padding-inline: 23px
 }
 
+.van-list-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.van-list-filter-buttons > a {
+  margin-right: 15px;
+  text-decoration: none;
+}
+
 .van-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -180,7 +190,7 @@ header a:hover {
   border: none;
   border-radius: 5px;
   background-color: #FFEAD0;
-  /* color: #4D4D4D; */
+  color: #4D4D4D;
   transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -441,4 +451,8 @@ footer {
 .host-van-detail-image {
   height: 100px;
   border-radius: 5px;
+}
+
+.footer {
+  margin-top: 50px;
 }
