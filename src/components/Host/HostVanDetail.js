@@ -43,7 +43,7 @@ export default function HostVanDetail() {
                         <h4>${array.price}/day</h4>
                     </div>
                 </div>
-                <div className="host-nav">
+                <nav className="host-van-detail-nav">
                     <NavLink to="."
                         style={({isActive}) => isActive ? activeStyles : null}
                         end
@@ -54,8 +54,8 @@ export default function HostVanDetail() {
                     <NavLink to="photos"
                         style={({isActive}) => isActive ? activeStyles : null}
                     >Photos</NavLink>
-                </div>
-                <Outlet />
+                </nav>
+                <Outlet context={[array, setArray]} />
             </div>
         </section>
     )

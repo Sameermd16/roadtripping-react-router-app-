@@ -1,7 +1,14 @@
 import React from "react"
+import { useOutletContext } from "react-router-dom"
 
 export default function Details() {
+    const [array, setArray] = useOutletContext()
     return (
-        <h1>this is host/vans/details section man!</h1>
+        <>
+            <p>Name: {array.name}</p>
+            <p>Category: {array.type} </p>
+            <p>description: {array.description}</p>
+            <p>Visibility: Publick</p>
+        </>
     )
 }
