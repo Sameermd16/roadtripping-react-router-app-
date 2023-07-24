@@ -1,34 +1,45 @@
 import React from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import { getVans } from "./api"
 
 function Vans() {
 
     const [vans, setVans] = React.useState([])
     const [searchParams, setSearchParams] = useSearchParams()
+    const [loading, setLoading] = React.useState(false)
+    const [error, setError] = React.useState(null)
+
     const typeFilter = searchParams.get("type")
-    console.log(typeFilter)
+    // console.log(typeFilter)
 
     React.useEffect(() => {
-        fetch("/api/vans")
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            setVans(data.vans)
-        })
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getVans()
+                setVans(data)
+            }catch(err) {
+                // console.log(err)
+                setError(err)
+            }finally {
+                setLoading(false)
+            }
+        }
+        loadVans()
     }, [])
     
-    console.log(vans)
+    // console.log(vans)
 
     // if(!typeFilter) {
     //     return vans
     // }
 
     const filteredArray = typeFilter ? vans.filter((van) => van.type === typeFilter) : vans
-    console.log(filteredArray)
+    // console.log(filteredArray)
 
 
     const vanElements = filteredArray.map((van) => {
-                return (
+                 (
                     <div className='van-tile' key={van.id}>
                         <Link to={van.id} state={{search: `?${searchParams.toString()}`, typeFilter:typeFilter}}> 
                             <img src={van.imageUrl} alt='van image' />
@@ -41,6 +52,13 @@ function Vans() {
                     </div>
                 )
             })
+
+    if(loading) {
+        return <h1>Loading...</h1>
+    }
+    if(error) {
+        return <h1>An error occured: {error.message} </h1>
+    }
 
     return (
         <div className='van-list-container'>

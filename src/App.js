@@ -15,6 +15,7 @@ import HostVanDetail from "./components/Host/HostVanDetail"
 import Details from "./components/Host/hostVanFullDetails/Details"
 import Pricing from "./components/Host/hostVanFullDetails/Pricing"
 import Photos from "./components/Host/hostVanFullDetails/Photos"
+import NotFound from './components/NotFound';
 import "./server"
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
               <Route path="photos" element={<Photos />} />
             </Route>
           </Route>
-          <Route path="*" element={<h1>Page not found</h1>} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
