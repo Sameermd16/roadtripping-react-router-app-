@@ -20,8 +20,8 @@ function VanDetail() {
     }, [params.id])
 
     //optional chaining 
-    // const search = location.state?.search || ""
-    //const type = location.state?.typeFilter || "all"
+    const search = location.state?.search || ""   //location.state && location.state.search || ""
+    // const type = location.state?.typeFilter || "all" 
 
     return (
         // <h1>van detail page here</h1>
