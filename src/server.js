@@ -3,6 +3,7 @@ import { createServer, Model } from "miragejs";
 createServer({
   models: {
     vans: Model,
+    users: Model 
   },
 
   seeds(server) {
@@ -15,7 +16,7 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/modest-explorer.png",
       type: "simple",
-      hostId: "123"
+      hostId: "123",
     });
     server.create("van", {
       id: "2",
@@ -26,7 +27,7 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/beach-bum.png",
       type: "rugged",
-      hostId: "456"
+      hostId: "456",
     });
     server.create("van", {
       id: "3",
@@ -37,7 +38,7 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/reliable-red.png",
       type: "luxury",
-      hostId: "789"
+      hostId: "789",
     });
     server.create("van", {
       id: "4",
@@ -48,7 +49,7 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/dreamfinder.png",
       type: "simple",
-      hostId: "123"
+      hostId: "123",
     });
     server.create("van", {
       id: "5",
@@ -59,7 +60,7 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/the-cruiser.png",
       type: "luxury",
-      hostId: "456"
+      hostId: "456",
     });
     server.create("van", {
       id: "6",
@@ -70,7 +71,13 @@ createServer({
       imageUrl:
         "https://assets.scrimba.com/advanced-react/react-router/green-wonder.png",
       type: "rugged",
-      hostId: "789"
+      hostId: "789",
+    });
+    server.create("user", {
+      id: "123",
+      email: "b@b.com",
+      password: "p123",
+      name: "bob",
     });
   },
 
@@ -97,21 +104,25 @@ createServer({
       return schema.vans.findBy({ id, hostId: "123" });
     });
     this.post("/login", (schema, request) => {
-      const { email, password } = JSON.parse(request.requestBody)
+      const { email, password } = JSON.parse(request.requestBody);
       // ⚠️ This is an extremely naive version of authentication. Please don't
       // do this in the real world, and never save raw text passwords
       // in your database 😅
-      const foundUser = schema.users.findBy({ email, password })
+      const foundUser = schema.users.findBy({ email, password });
       if (!foundUser) {
-          return new Response(401, {}, { message: "No user with those credentials found!" })
+        return new Response(
+          401,
+          {},
+          { message: "No user with those credentials found!" }
+        );
       }
 
       // At the very least, don't send the password back to the client 😅
-      foundUser.password = undefined
+      foundUser.password = undefined;
       return {
-          user: foundUser,
-          token: "Enjoy your pizza, here's your tokens."
-      }
-  })
+        user: foundUser,
+        token: "Enjoy your pizza, here's your tokens.",
+      };
+    });
   },
 });
